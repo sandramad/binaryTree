@@ -1,0 +1,8 @@
+rr w
+r l
+rl t
+h
+l s
+ll t
+lr u
+lrr p

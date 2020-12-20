@@ -1,0 +1,20 @@
+r a
+rr b
+rl c
+rrr h
+rrl i
+lrrrrr k
+d
+l e
+ll f
+lr g
+lll l
+llr m
+lrl n
+lrr o
+lrrl p
+lrrr r
+lrrll Z
+lrrrr t
+lrrrl u
+lrrrr w
