@@ -49,14 +49,14 @@ public class Main {
 
 		budujDrzewo(drzewo, Instrukcje); // budujemy drzewo
 
-		ArrayList<String> z = new ArrayList<String>();
-		z.addAll(budujWyrazy(drzewo)); // tworzymy listę wyrazów, aby znalezć najstarszy wyraz
-		if (z.size() > 1)
-			Collections.sort(z); // posortuje jeśli znalazło więcej wyrazów na tą samą literę
+		ArrayList<String> najstarszy = new ArrayList<String>();
+		najstarszy.addAll(budujWyrazy(drzewo)); // tworzymy listę wyrazów, aby znalezć najstarszy wyraz
+		if (najstarszy.size() > 1)
+			Collections.sort(najstarszy); // posortuje jeśli znalazło więcej wyrazów na tą samą literę
 									// - w ramach optymalizacji nie sortujemy zawsze,
 									// a żeby nie komplikować kodu - sprawdzać kolejnych liści szybciej będzie
-									// posortować wynik
-		System.out.println(z.get(z.size() - 1) + korzen);
+									// posortować wynik (w końcu to raczej pojedyncze przypadki)
+		System.out.println(najstarszy.get(najstarszy.size() - 1) + korzen);
 	}
 
 	private static List<String> budujWyrazy(ZawartoscDrzewa<String> pozycjaStartowa) {
