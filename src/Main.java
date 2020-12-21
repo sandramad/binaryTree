@@ -56,7 +56,8 @@ public class Main {
 									// - w ramach optymalizacji nie sortujemy zawsze,
 									// a żeby nie komplikować kodu - sprawdzać kolejnych liści szybciej będzie
 									// posortować wynik (w końcu to raczej pojedyncze przypadki)
-		System.out.println(najstarszy.get(najstarszy.size() - 1) + korzen);
+//			for (i=0;i<najstarszy.size();i++)
+		System.out.println(najstarszy.get(najstarszy.size()-1) + korzen); 
 	}
 
 	private static List<String> budujWyrazy(ZawartoscDrzewa<String> pozycjaStartowa) {
@@ -70,10 +71,10 @@ public class Main {
 
 		if (slowa.isEmpty()) {
 			najstarsze = pozycjaStartowa.getWartosc().charAt(0);
-			if (tmp <= najstarsze) { // sprawdza czy ostatni liść jest największy
+	//		if (tmp <= najstarsze) { // sprawdza czy ostatni liść jest największy
 				tmp = najstarsze;
 				slowa.add(pozycjaStartowa.getWartosc()); // buduje słowa tylko z najwyżej znalezionych wartości
-			}
+		//	}
 		} else
 			slowa = slowa.stream().map(s -> s + pozycjaStartowa.getWartosc()).collect(Collectors.toList());
 		return slowa;

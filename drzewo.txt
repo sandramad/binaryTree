@@ -6,3 +6,11 @@ l s
 ll t
 lr u
 lrr p
+lrrr p
+lrrl l
+lrrlr l
+lrrlrl i
+lrrlrll p
+lrrlrllr o
+lrrlrlll d
+lrrlrlllr d
