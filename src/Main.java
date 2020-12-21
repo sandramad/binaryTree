@@ -57,6 +57,7 @@ public class Main {
 									// a żeby nie komplikować kodu - sprawdzać kolejnych liści szybciej będzie
 									// posortować wynik (w końcu to raczej pojedyncze przypadki)
 //			for (i=0;i<najstarszy.size();i++)
+//				System.out.println(najstarszy.get(i) + korzen); 
 		System.out.println(najstarszy.get(najstarszy.size()-1) + korzen); 
 	}
 
