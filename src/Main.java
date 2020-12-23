@@ -18,7 +18,6 @@ class Instrukcje {
 
 public class Main {
 	static String korzen = "";
-	static ZawartoscDrzewa<String> drzewo = new ZawartoscDrzewa<>(korzen);
 	static List<Instrukcje> Instrukcje = new ArrayList<>();
 	static int i = 0;
 	static String wartosc[] = new String[2];
@@ -46,9 +45,8 @@ public class Main {
 																									// liter w pliku
 			} else
 				korzen = liniaPliku.get(i); // znajdujemy korzeń
-		drzewo = new ZawartoscDrzewa<>(korzen);
+		ZawartoscDrzewa drzewo = new ZawartoscDrzewa<>(korzen);
 		budujDrzewo(drzewo, Instrukcje); // budujemy drzewo
-
 		ArrayList<String> najstarszy = new ArrayList<String>();
 		najstarszy.addAll(budujWyrazy(drzewo));
 			Collections.sort(najstarszy);
