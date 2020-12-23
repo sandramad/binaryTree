@@ -45,7 +45,7 @@ public class Main {
 																									// liter w pliku
 			} else
 				korzen = liniaPliku.get(i); // znajdujemy korzeń
-		ZawartoscDrzewa drzewo = new ZawartoscDrzewa<>(korzen);
+		ZawartoscDrzewa<String> drzewo = new ZawartoscDrzewa<>(korzen);
 		budujDrzewo(drzewo, Instrukcje); // budujemy drzewo
 		ArrayList<String> najstarszy = new ArrayList<String>();
 		najstarszy.addAll(budujWyrazy(drzewo));
