@@ -46,37 +46,28 @@ public class Main {
 																									// liter w pliku
 			} else
 				korzen = liniaPliku.get(i); // znajdujemy korzeń
-
+		drzewo = new ZawartoscDrzewa<>(korzen);
 		budujDrzewo(drzewo, Instrukcje); // budujemy drzewo
 
 		ArrayList<String> najstarszy = new ArrayList<String>();
-		najstarszy.addAll(budujWyrazy(drzewo)); // tworzymy listę wyrazów, aby znalezć najstarszy wyraz
-		if (najstarszy.size() > 1)
-			Collections.sort(najstarszy); // posortuje jeśli znalazło więcej wyrazów na tą samą literę
-									// - w ramach optymalizacji nie sortujemy zawsze,
-									// a żeby nie komplikować kodu - sprawdzać kolejnych liści szybciej będzie
-									// posortować wynik (w końcu to raczej pojedyncze przypadki)
+		najstarszy.addAll(budujWyrazy(drzewo));
+			Collections.sort(najstarszy);
 //			for (i=0;i<najstarszy.size();i++)
-//				System.out.println(najstarszy.get(i) + korzen); 
-		System.out.println(najstarszy.get(najstarszy.size()-1) + korzen); 
+//				System.out.println(najstarszy.get(i)); 
+		System.out.println(najstarszy.get(najstarszy.size() - 1));
 	}
 
 	private static List<String> budujWyrazy(ZawartoscDrzewa<String> pozycjaStartowa) {
 		List<String> slowa = new ArrayList<>();
-		char najstarsze;
 		if (pozycjaStartowa.getLewa() != null)
 			slowa.addAll(budujWyrazy(pozycjaStartowa.getLewa())); // rekurencyjnie budujemy wyrazy z lewej strony
 
 		if (pozycjaStartowa.getPrawa() != null)
 			slowa.addAll(budujWyrazy(pozycjaStartowa.getPrawa())); // rekurencyjnie budujemy wyrazy z prawej strony
 
-		if (slowa.isEmpty()) {
-			najstarsze = pozycjaStartowa.getWartosc().charAt(0);
-	//		if (tmp <= najstarsze) { // sprawdza czy ostatni liść jest największy
-				tmp = najstarsze;
-				slowa.add(pozycjaStartowa.getWartosc()); // buduje słowa tylko z najwyżej znalezionych wartości
-		//	}
-		} else
+		if (slowa.isEmpty())
+			slowa.add(pozycjaStartowa.getWartosc());
+		else
 			slowa = slowa.stream().map(s -> s + pozycjaStartowa.getWartosc()).collect(Collectors.toList());
 		return slowa;
 	}
