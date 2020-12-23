@@ -6,16 +6,6 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-class Instrukcje {
-	String pozycja;
-	String wartosc;
-
-	public Instrukcje(String pozycja, String wartosc) {
-		this.pozycja = pozycja;
-		this.wartosc = wartosc;
-	}
-}
-
 public class Main {
 	static String korzen = "";
 	static List<Instrukcje> Instrukcje = new ArrayList<>();
