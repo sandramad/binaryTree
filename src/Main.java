@@ -1,7 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -19,7 +18,7 @@ public class Main {
 
 		try {
 //			scan = new Scanner(new File("tree.txt")); 
-			scan = new Scanner(new File("drzewo.txt")); // możesz sobie wybać plik
+			scan = new Scanner(new File("magda.txt")); // możesz sobie wybać plik
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -37,12 +36,21 @@ public class Main {
 				korzen = liniaPliku.get(i); // znajdujemy korzeń
 		ZawartoscDrzewa<String> drzewo = new ZawartoscDrzewa<>(korzen);
 		budujDrzewo(drzewo, Instrukcje); // budujemy drzewo
-		ArrayList<String> najstarszy = new ArrayList<String>();
-		najstarszy.addAll(budujWyrazy(drzewo));
-			Collections.sort(najstarszy);
-//			for (i=0;i<najstarszy.size();i++)
-//				System.out.println(najstarszy.get(i)); 
-		System.out.println(najstarszy.get(najstarszy.size() - 1));
+		String najstarszy[] = budujWyrazy(drzewo).toArray(new String[0]);
+		for (int i = 0; i < najstarszy.length; i++) {
+			int p = i;
+			String element = najstarszy[i];
+			for (int j = i + 1; j < najstarszy.length; j++) {
+				if (element.compareTo(najstarszy[j]) > 0) {
+					element = najstarszy[j];
+					p = j;
+				}
+			}
+			najstarszy[p] = najstarszy[i];
+			najstarszy[i] = element;
+		}
+//      for(String s : najstarszy) System.out.println(s);
+		System.out.println(najstarszy[najstarszy.length - 1]);
 	}
 
 	private static List<String> budujWyrazy(ZawartoscDrzewa<String> pozycjaStartowa) {
