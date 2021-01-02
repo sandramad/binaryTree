@@ -50,7 +50,7 @@ public class Main {
 	}
 
 	private void findOldest() {
-		Set<String> words = new TreeSet();
+		Set<String> words = new TreeSet<String>();
 		bulidWord(root, words, new StringBuilder());
 //		System.out.println(words);
         System.out.println(words.toArray()[words.size()-1]);
