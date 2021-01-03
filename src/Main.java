@@ -12,7 +12,7 @@ public class Main {
 		public Wezel prawa;
 	}
 
-	Wezel root = new Wezel();
+	Wezel korzen = new Wezel();
 
 	public static void main(String[] args) {
 		Main main = new Main();
@@ -28,7 +28,7 @@ public class Main {
 				String sciezka = "";
 				if (wiersz.length() > 2)
 					sciezka = wiersz.substring(0, wiersz.length() - 2);
-				budujDrzewo(root, sciezka, wartosc);
+				budujDrzewo(korzen, sciezka, wartosc);
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -51,7 +51,7 @@ public class Main {
 
 	private void znajdzNajstarszy() {
 		Set<String> slowa = new TreeSet<String>();
-		budujWyrazy(root, slowa, new StringBuilder());
+		budujWyrazy(korzen, slowa, new StringBuilder());
 //		System.out.println(slowa); // lista wszystkich wyrazów
 		System.out.println(slowa.toArray()[slowa.size() - 1]); // zwrot ostatniego wyrazu
 	}
