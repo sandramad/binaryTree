@@ -6,66 +6,66 @@ import java.util.TreeSet;
 
 public class Main {
 
-	private class Node {
-		public Character value;
-		public Node left;
-		public Node right;
+	private class Wezel {
+		public Character wartosc;
+		public Wezel lewa;
+		public Wezel prawa;
 	}
 
-	Node root = new Node();
+	Wezel root = new Wezel();
 
 	public static void main(String[] args) {
 		Main main = new Main();
-		main.processFile();
-		main.findOldest();
+		main.skanujPlik();
+		main.znajdzNajstarszy();
 	}
 
-	private void processFile() {
+	private void skanujPlik() {
 		try (Scanner scan = new Scanner(new File("drzewo.txt"))) {
 			while (scan.hasNextLine()) {
-				String line = scan.nextLine().toLowerCase();
-				Character value = line.charAt(line.length() - 1);
-				String path = "";
-				if (line.length() > 2)
-					path = line.substring(0, line.length() - 2);
-				setNodeValue(root, path, value);
+				String wiersz = scan.nextLine().toLowerCase();
+				Character wartosc = wiersz.charAt(wiersz.length() - 1);
+				String sciezka = "";
+				if (wiersz.length() > 2)
+					sciezka = wiersz.substring(0, wiersz.length() - 2);
+				budujDrzewo(root, sciezka, wartosc);
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 	}
 
-	private void setNodeValue(Node node, String path, Character value) {
-		if (path.length() == 0)
-			node.value = value;
-		else if (path.charAt(0) == 'l') {
-			if (node.left == null)
-				node.left = new Node();
-			setNodeValue(node.left, path.substring(1), value);
+	private void budujDrzewo(Wezel wezel, String sciezka, Character wartosc) {
+		if (sciezka.length() == 0)
+			wezel.wartosc = wartosc;
+		else if (sciezka.charAt(0) == 'l') {
+			if (wezel.lewa == null)
+				wezel.lewa = new Wezel();
+			budujDrzewo(wezel.lewa, sciezka.substring(1), wartosc);
 		} else {
-			if (node.right == null)
-				node.right = new Node();
-			setNodeValue(node.right, path.substring(1), value);
+			if (wezel.prawa == null)
+				wezel.prawa = new Wezel();
+			budujDrzewo(wezel.prawa, sciezka.substring(1), wartosc);
 		}
 	}
 
-	private void findOldest() {
-		Set<String> words = new TreeSet<String>();
-		bulidWord(root, words, new StringBuilder());
-//		System.out.println(words); // lista wszystkich wyrazów
-		System.out.println(words.toArray()[words.size() - 1]); // zwrot ostatniego wyrazu
+	private void znajdzNajstarszy() {
+		Set<String> slowa = new TreeSet<String>();
+		budujWyrazy(root, slowa, new StringBuilder());
+//		System.out.println(slowa); // lista wszystkich wyrazów
+		System.out.println(slowa.toArray()[slowa.size() - 1]); // zwrot ostatniego wyrazu
 	}
 
-	private void bulidWord(Node node, Set<String> words, StringBuilder word) {
-		word.append(node.value);
-		if (node.left == null && node.right == null)
-			words.add(new StringBuilder(word).reverse().toString());
+	private void budujWyrazy(Wezel wezel, Set<String> slowa, StringBuilder slowo) {
+		slowo.append(wezel.wartosc);
+		if (wezel.lewa == null && wezel.prawa == null)
+			slowa.add(new StringBuilder(slowo).reverse().toString());
 		else {
-			if (node.left != null)
-				bulidWord(node.left, words, word);
-			if (node.right != null)
-				bulidWord(node.right, words, word);
+			if (wezel.lewa != null)
+				budujWyrazy(wezel.lewa, slowa, slowo);
+			if (wezel.prawa != null)
+				budujWyrazy(wezel.prawa, slowa, slowo);
 		}
-		word.deleteCharAt(word.length() - 1);
+		slowo.deleteCharAt(slowo.length() - 1);
 	}
 }
