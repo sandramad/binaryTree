@@ -4,20 +4,41 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class Main {
+class Wezel {
+	public Character wartosc;
+	public Wezel lewa;
+	public Wezel prawa;
+}
 
-	private class Wezel {
-		public Character wartosc;
-		public Wezel lewa;
-		public Wezel prawa;
-	}
+public class Main {
 
 	Wezel korzen = new Wezel();
 
-	public static void main(String[] args) {
-		Main main = new Main();
-		main.skanujPlik();
-		main.znajdzNajstarszy();
+	private void budujDrzewo(Wezel wezel, String sciezka, Character wartosc) {
+		if (sciezka.length() == 0)
+			wezel.wartosc = wartosc;
+		else if (sciezka.charAt(0) == 'l') {
+			if (wezel.lewa == null)
+				wezel.lewa = new Wezel();
+			budujDrzewo(wezel.lewa, sciezka.substring(1), wartosc);
+		} else {
+			if (wezel.prawa == null)
+				wezel.prawa = new Wezel();
+			budujDrzewo(wezel.prawa, sciezka.substring(1), wartosc);
+		}
+	}
+
+	private void budujWyrazy(Wezel wezel, Set<String> slowa, StringBuilder slowo) {
+		slowo.append(wezel.wartosc);
+		if (wezel.lewa == null && wezel.prawa == null)
+			slowa.add(new StringBuilder(slowo).reverse().toString());
+		else {
+			if (wezel.lewa != null)
+				budujWyrazy(wezel.lewa, slowa, slowo);
+			if (wezel.prawa != null)
+				budujWyrazy(wezel.prawa, slowa, slowo);
+		}
+		slowo.deleteCharAt(slowo.length() - 1);
 	}
 
 	private void skanujPlik() {
@@ -35,20 +56,6 @@ public class Main {
 		}
 	}
 
-	private void budujDrzewo(Wezel wezel, String sciezka, Character wartosc) {
-		if (sciezka.length() == 0)
-			wezel.wartosc = wartosc;
-		else if (sciezka.charAt(0) == 'l') {
-			if (wezel.lewa == null)
-				wezel.lewa = new Wezel();
-			budujDrzewo(wezel.lewa, sciezka.substring(1), wartosc);
-		} else {
-			if (wezel.prawa == null)
-				wezel.prawa = new Wezel();
-			budujDrzewo(wezel.prawa, sciezka.substring(1), wartosc);
-		}
-	}
-
 	private void znajdzNajstarszy() {
 		Set<String> slowa = new TreeSet<String>();
 		budujWyrazy(korzen, slowa, new StringBuilder());
@@ -56,16 +63,10 @@ public class Main {
 		System.out.println(slowa.toArray()[slowa.size() - 1]); // zwrot ostatniego wyrazu
 	}
 
-	private void budujWyrazy(Wezel wezel, Set<String> slowa, StringBuilder slowo) {
-		slowo.append(wezel.wartosc);
-		if (wezel.lewa == null && wezel.prawa == null)
-			slowa.add(new StringBuilder(slowo).reverse().toString());
-		else {
-			if (wezel.lewa != null)
-				budujWyrazy(wezel.lewa, slowa, slowo);
-			if (wezel.prawa != null)
-				budujWyrazy(wezel.prawa, slowa, slowo);
-		}
-		slowo.deleteCharAt(slowo.length() - 1);
+	public static void main(String[] args) {
+		Main main = new Main();
+		main.skanujPlik();
+		main.znajdzNajstarszy();
 	}
+
 }
