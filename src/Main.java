@@ -52,15 +52,15 @@ public class Main {
 	private void findOldest() {
 		Set<String> words = new TreeSet<String>();
 		bulidWord(root, words, new StringBuilder());
-//		System.out.println(words);
-        System.out.println(words.toArray()[words.size()-1]);
+//		System.out.println(words); // lista wszystkich wyrazów
+		System.out.println(words.toArray()[words.size() - 1]); // zwrot ostatniego wyrazu
 	}
 
 	private void bulidWord(Node node, Set<String> words, StringBuilder word) {
 		word.append(node.value);
-		if (node.left == null && node.right == null) {
+		if (node.left == null && node.right == null)
 			words.add(new StringBuilder(word).reverse().toString());
-		} else {
+		else {
 			if (node.left != null)
 				bulidWord(node.left, words, word);
 			if (node.right != null)
