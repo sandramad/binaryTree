@@ -44,8 +44,9 @@ public class Main {
 	private String znajdzNajstarszy(Wezel wezel, String najstarszy, StringBuilder slowo) {
         slowo.append(wezel.wartosc);
         if (wezel.lewa == null && wezel.prawa == null) {
-            String reversed = new StringBuilder(slowo).reverse().toString();
-            najstarszy = (najstarszy.compareTo(reversed) >= 0) ? najstarszy : reversed;
+            String tmp = new StringBuilder(slowo).reverse().toString();
+//        	System.out.println(tmp); // wszystkie słowa
+            najstarszy = (najstarszy.compareTo(tmp) >= 0) ? najstarszy : tmp;
         } else {
             if (wezel.lewa != null) najstarszy = znajdzNajstarszy(wezel.lewa, najstarszy, slowo);
             if (wezel.prawa != null) najstarszy = znajdzNajstarszy(wezel.prawa, najstarszy, slowo);
