@@ -44,16 +44,16 @@ public class Main {
 		}
 	}
 
-	private String znajdzNajstarszy(Wezel wezel, String najstarszy, StringBuilder word) {
-        word.append(wezel.wartosc);
+	private String znajdzNajstarszy(Wezel wezel, String najstarszy, StringBuilder slowo) {
+        slowo.append(wezel.wartosc);
         if (wezel.lewa == null && wezel.prawa == null) {
-            String reversed = new StringBuilder(word).reverse().toString();
+            String reversed = new StringBuilder(slowo).reverse().toString();
             najstarszy = (najstarszy.compareTo(reversed) >= 0) ? najstarszy : reversed;
         } else {
-            if (wezel.lewa != null) najstarszy = znajdzNajstarszy(wezel.lewa, najstarszy, word);
-            if (wezel.prawa != null) najstarszy = znajdzNajstarszy(wezel.prawa, najstarszy, word);
+            if (wezel.lewa != null) najstarszy = znajdzNajstarszy(wezel.lewa, najstarszy, slowo);
+            if (wezel.prawa != null) najstarszy = znajdzNajstarszy(wezel.prawa, najstarszy, slowo);
         }
-        word.deleteCharAt(word.length()-1);
+        slowo.deleteCharAt(slowo.length()-1);
         return najstarszy;
     }
 
