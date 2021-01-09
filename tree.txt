@@ -18,3 +18,9 @@ lrrll Z
 lrrrr t
 lrrrl u
 lrrrr w
+lrrrrl p
+lrrrrlr w
+lrrrrlrrl e
+lrrrrlrrll d
+lrrrrlrrlll s
+lrrrrlrrlllr z

@@ -13,8 +13,9 @@ class Wezel {
 public class Main {
 
 	Wezel korzen = new Wezel();
+	char tmp = 'a';
 
-	private void budujDrzewo(Wezel wezel, String sciezka, Character wartosc) {
+	private void budujDrzewo(Wezel wezel, String sciezka, char wartosc) {
 		if (sciezka.length() == 0)
 			wezel.wartosc = wartosc;
 		else if (sciezka.charAt(0) == 'l') {
@@ -30,9 +31,10 @@ public class Main {
 
 	private void budujWyrazy(Wezel wezel, Set<String> slowa, StringBuilder slowo) {
 		slowo.append(wezel.wartosc);
-		if (wezel.lewa == null && wezel.prawa == null)
+		if (wezel.lewa == null && wezel.prawa == null && tmp<= wezel.wartosc) {
+			tmp = wezel.wartosc;
 			slowa.add(new StringBuilder(slowo).reverse().toString());
-		else {
+		} else {
 			if (wezel.lewa != null)
 				budujWyrazy(wezel.lewa, slowa, slowo);
 			if (wezel.prawa != null)
@@ -42,7 +44,7 @@ public class Main {
 	}
 
 	private void skanujPlik() {
-		try (Scanner scan = new Scanner(new File("drzewo.txt"))) {
+		try (Scanner scan = new Scanner(new File("magda.txt"))) {
 			while (scan.hasNextLine()) {
 				String wiersz = scan.nextLine().toLowerCase();
 				Character wartosc = wiersz.charAt(wiersz.length() - 1);
