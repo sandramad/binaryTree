@@ -46,7 +46,7 @@ public class Main {
         if (wezel.lewa == null && wezel.prawa == null) {
             String tmp = new StringBuilder(slowo).reverse().toString();
 //        	System.out.println(tmp); // wszystkie słowa
-            najstarszy = (najstarszy.compareTo(tmp) >= 0) ? najstarszy : tmp;
+            najstarszy = (najstarszy.compareTo(tmp) > 0) ? najstarszy : tmp;
         } else {
             if (wezel.lewa != null) najstarszy = znajdzNajstarszy(wezel.lewa, najstarszy, slowo);
             if (wezel.prawa != null) najstarszy = znajdzNajstarszy(wezel.prawa, najstarszy, slowo);
