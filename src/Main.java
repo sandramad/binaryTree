@@ -1,8 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-import java.util.Set;
-import java.util.TreeSet;
 
 class Wezel {
 	public Character wartosc;
@@ -13,7 +11,6 @@ class Wezel {
 public class Main {
 
 	Wezel korzen = new Wezel();
-	String tmp = "a";
 
 	private void budujDrzewo(Wezel wezel, String sciezka, char wartosc) {
 		if (sciezka.length() == 0)
