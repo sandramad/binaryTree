@@ -2,12 +2,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-class Wezel {
-	public Character wartosc;
-	public Wezel lewa;
-	public Wezel prawa;
-}
-
 public class MainChar {
 
 	Wezel korzen = new Wezel();

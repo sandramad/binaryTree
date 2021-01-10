@@ -2,12 +2,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-class Wezel {
-	public Character wartosc;
-	public Wezel lewa;
-	public Wezel prawa;
-}
-
 public class Main {
 
 	Wezel korzen = new Wezel();
@@ -26,8 +20,8 @@ public class Main {
 		}
 	}
 
-	private void skanujPlik() {
-		try (Scanner scan = new Scanner(new File("tree.txt"))) {
+	private void skanujPlik(String plik) {
+		try (Scanner scan = new Scanner(new File(plik))) {
 			while (scan.hasNextLine()) {
 				String wiersz = scan.nextLine().toLowerCase();
 				Character wartosc = wiersz.charAt(wiersz.length() - 1);
@@ -42,23 +36,25 @@ public class Main {
 	}
 
 	private String znajdzNajstarszy(Wezel wezel, String najstarszy, StringBuilder slowo) {
-        slowo.append(wezel.wartosc);
-        if (wezel.lewa == null && wezel.prawa == null) {
-            String tmp = new StringBuilder(slowo).reverse().toString();
+		slowo.append(wezel.wartosc);
+		if (wezel.lewa == null && wezel.prawa == null) {
+			String tmp = new StringBuilder(slowo).reverse().toString();
 //        	System.out.println(tmp); // wszystkie słowa
-            najstarszy = (najstarszy.compareTo(tmp) > 0) ? najstarszy : tmp;
-        } else {
-            if (wezel.lewa != null) najstarszy = znajdzNajstarszy(wezel.lewa, najstarszy, slowo);
-            if (wezel.prawa != null) najstarszy = znajdzNajstarszy(wezel.prawa, najstarszy, slowo);
-        }
-        slowo.deleteCharAt(slowo.length()-1);
-        return najstarszy;
-    }
+			najstarszy = (najstarszy.compareTo(tmp) > 0) ? najstarszy : tmp;
+		} else {
+			if (wezel.lewa != null)
+				najstarszy = znajdzNajstarszy(wezel.lewa, najstarszy, slowo);
+			if (wezel.prawa != null)
+				najstarszy = znajdzNajstarszy(wezel.prawa, najstarszy, slowo);
+		}
+		slowo.deleteCharAt(slowo.length() - 1);
+		return najstarszy;
+	}
 
 	public static void main(String[] args) {
 		Main main = new Main();
-		main.skanujPlik();
-        System.out.println(main.znajdzNajstarszy(main.korzen, "", new StringBuilder()));
+		main.skanujPlik("tree.txt");
+		System.out.println(main.znajdzNajstarszy(main.korzen, "", new StringBuilder()));
 	}
 
 }
