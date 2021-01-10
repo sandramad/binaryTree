@@ -11,7 +11,7 @@ class Wezel {
 public class MainChar {
 
 	Wezel korzen = new Wezel();
-	Character chTemp = 'a';
+	Character cTmp = 'a';
 
 	private void budujDrzewo(Wezel wezel, String sciezka, char wartosc) {
 		if (sciezka.length() == 0)
@@ -27,8 +27,8 @@ public class MainChar {
 		}
 	}
 
-	private void skanujPlik() {
-		try (Scanner scan = new Scanner(new File("tree.txt"))) {
+	private void skanujPlik(String plik) {
+		try (Scanner scan = new Scanner(new File(plik))) {
 			while (scan.hasNextLine()) {
 				String wiersz = scan.nextLine().toLowerCase();
 				Character wartosc = wiersz.charAt(wiersz.length() - 1);
@@ -45,10 +45,10 @@ public class MainChar {
 	private String znajdzNajstarszy(Wezel wezel, String najstarszy, StringBuilder slowo) {
 		slowo.append(wezel.wartosc);
 		if (wezel.lewa == null && wezel.prawa == null) {
-			if (chTemp < wezel.wartosc) {
-				chTemp = wezel.wartosc;
+			if (cTmp < wezel.wartosc) {
+				cTmp = wezel.wartosc;
 				najstarszy = new StringBuilder(slowo).reverse().toString();
-			} else if (chTemp == wezel.wartosc) {
+			} else if (cTmp == wezel.wartosc) {
 				String tmp = new StringBuilder(slowo).reverse().toString();
 				najstarszy = (najstarszy.compareTo(tmp) > 0) ? najstarszy : tmp;
 			}
@@ -64,7 +64,7 @@ public class MainChar {
 
 	public static void main(String[] args) {
 		MainChar main = new MainChar();
-		main.skanujPlik();
+		main.skanujPlik("tree.txt");
 		System.out.println(main.znajdzNajstarszy(main.korzen, "", new StringBuilder()));
 	}
 
