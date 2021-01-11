@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class MainList {
 
 	Wezel korzen = new Wezel();
-	static String tmp = "a";
+	String tmp = "a";
 
 	private void budujDrzewo(Wezel wezel, String sciezka, String wartosc) {
 		if (sciezka.length() == 0)
