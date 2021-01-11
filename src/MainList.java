@@ -6,20 +6,26 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+class W {
+	public String wartosc;
+	public W lewa;
+	public W prawa;
+}
+
 public class MainList {
 
-	Wezel korzen = new Wezel();
+	W korzen = new W();
 
-	private void budujDrzewo(Wezel wezel, String sciezka, String wartosc) {
+	private void budujDrzewo(W wezel, String sciezka, String wartosc) {
 		if (sciezka.length() == 0)
 			wezel.wartosc = wartosc;
 		else if (sciezka.charAt(0) == 'l') {
 			if (wezel.lewa == null)
-				wezel.lewa = new Wezel();
+				wezel.lewa = new W();
 			budujDrzewo(wezel.lewa, sciezka.substring(1), wartosc);
 		} else {
 			if (wezel.prawa == null)
-				wezel.prawa = new Wezel();
+				wezel.prawa = new W();
 			budujDrzewo(wezel.prawa, sciezka.substring(1), wartosc);
 		}
 	}
@@ -39,7 +45,7 @@ public class MainList {
 		}
 	}
 
-	private List<String> budujWyrazy(Wezel wezel) {
+	private List<String> budujWyrazy(W wezel) {
 		List<String> slowa = new ArrayList<>();
 		if (wezel.lewa != null)
 			slowa.addAll(budujWyrazy(wezel.lewa)); // rekurencyjnie budujemy wyrazy z lewej strony

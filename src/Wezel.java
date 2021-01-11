@@ -1,5 +1,5 @@
 public class Wezel {
-	public String wartosc;
+	public Character wartosc;
 	public Wezel lewa;
 	public Wezel prawa;
 }
