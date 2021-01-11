@@ -54,7 +54,7 @@ public class MainList {
 			slowa.addAll(budujWyrazy(wezel.prawa)); // rekurencyjnie budujemy wyrazy z prawej strony
 
 		if (slowa.isEmpty())
-			slowa.add(wezel.wartosc); // buduje słowa tylko z najwyżej znalezionych wartości
+			slowa.add(wezel.wartosc);
 		else
 			slowa = slowa.stream().map(s -> s + wezel.wartosc).collect(Collectors.toList());
 		return slowa;
@@ -66,6 +66,7 @@ public class MainList {
 		ArrayList<String> najstarszy = new ArrayList<String>();
 		najstarszy.addAll(main.budujWyrazy(main.korzen));
 		Collections.sort(najstarszy);
+//		System.out.println(najstarszy); // wszystkie wyrazy
 		System.out.println(najstarszy.get(najstarszy.size() - 1));
 	}
 
