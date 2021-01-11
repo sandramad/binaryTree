@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 public class MainList {
 
 	Wezel korzen = new Wezel();
-	String tmp = "a";
 
 	private void budujDrzewo(Wezel wezel, String sciezka, String wartosc) {
 		if (sciezka.length() == 0)
@@ -42,18 +41,15 @@ public class MainList {
 
 	private List<String> budujWyrazy(Wezel wezel) {
 		List<String> slowa = new ArrayList<>();
-		String najstarsze = "";
 		if (wezel.lewa != null)
 			slowa.addAll(budujWyrazy(wezel.lewa)); // rekurencyjnie budujemy wyrazy z lewej strony
 
 		if (wezel.prawa != null)
 			slowa.addAll(budujWyrazy(wezel.prawa)); // rekurencyjnie budujemy wyrazy z prawej strony
 
-		if (slowa.isEmpty()) {
-			najstarsze = wezel.wartosc;
-				tmp = najstarsze;
-				slowa.add(wezel.wartosc); // buduje słowa tylko z najwyżej znalezionych wartości
-		} else
+		if (slowa.isEmpty())
+			slowa.add(wezel.wartosc); // buduje słowa tylko z najwyżej znalezionych wartości
+		else
 			slowa = slowa.stream().map(s -> s + wezel.wartosc).collect(Collectors.toList());
 		return slowa;
 	}
@@ -61,10 +57,10 @@ public class MainList {
 	public static void main(String[] args) {
 		MainList main = new MainList();
 		main.skanujPlik("tree.txt");
-        ArrayList<String> najstarszy = new ArrayList<String>();
+		ArrayList<String> najstarszy = new ArrayList<String>();
 		najstarszy.addAll(main.budujWyrazy(main.korzen));
 		Collections.sort(najstarszy);
-		System.out.println(najstarszy.get(najstarszy.size()-1));
+		System.out.println(najstarszy.get(najstarszy.size() - 1));
 	}
 
 }
