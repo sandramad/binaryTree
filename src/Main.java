@@ -3,7 +3,8 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Main {
-
+    public static final String RED = "\u001B[31m";
+    public static final String RESET = "\u001B[0m";
 	Wezel korzen = new Wezel();
 
 	private void budujDrzewo(Wezel wezel, String sciezka, char wartosc) {
@@ -54,7 +55,7 @@ public class Main {
 	public static void main(String[] args) {
 		Main main = new Main();
 		main.skanujPlik("tree.txt");
-		System.out.println(main.znajdzNajstarszy(main.korzen, "", new StringBuilder()));
+		System.out.println(RED + main.znajdzNajstarszy(main.korzen, "", new StringBuilder()) + RESET);
 	}
 
 }
