@@ -20,11 +20,11 @@ public class Main {
 		}
 	}
 
-	private void skanujPlik(String plik) {
-		try (Scanner scan = new Scanner(new File(plik))) {
+	private void skanujPlik() {
+		try (Scanner scan = new Scanner(new File("drzewo.txt"))) {
 			while (scan.hasNextLine()) {
 				String wiersz = scan.nextLine().toLowerCase();
-				Character wartosc = wiersz.charAt(wiersz.length() - 1);
+				char wartosc = wiersz.charAt(wiersz.length() - 1);
 				String sciezka = "";
 				if (wiersz.length() > 2)
 					sciezka = wiersz.substring(0, wiersz.length() - 2);
@@ -54,7 +54,7 @@ public class Main {
 	public static void main(String[] args) {
 		long millisActualTime = System.currentTimeMillis(); // początkowy czas w milisekundach.
 		Main main = new Main();
-		main.skanujPlik("drzewo.txt");
+		main.skanujPlik();
 		System.out.println(main.znajdzNajstarszy(main.korzen, "", new StringBuilder()));
 		long executionTime = System.currentTimeMillis() - millisActualTime; // czas wykonania programu w milisekundach.
 		System.out.println("Main: "+executionTime + " ms");

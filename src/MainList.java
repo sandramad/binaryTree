@@ -30,8 +30,8 @@ public class MainList {
 		}
 	}
 
-	private void skanujPlik(String plik) {
-		try (Scanner scan = new Scanner(new File(plik))) {
+	private void skanujPlik() {
+		try (Scanner scan = new Scanner(new File("drzewo.txt"))) {
 			while (scan.hasNextLine()) {
 				String wiersz = scan.nextLine().toLowerCase();
 				String wartosc = wiersz.substring(wiersz.length() - 1);
@@ -63,9 +63,8 @@ public class MainList {
 	public static void main(String[] args) {
 		long millisActualTime = System.currentTimeMillis(); // początkowy czas w milisekundach.
 		MainList main = new MainList();
-		main.skanujPlik("drzewo.txt");
-		ArrayList<String> najstarszy = new ArrayList<String>();
-		najstarszy.addAll(main.budujWyrazy(main.korzen));
+		main.skanujPlik();
+		ArrayList<String> najstarszy = new ArrayList<String>(main.budujWyrazy(main.korzen));
 		Collections.sort(najstarszy);
 //		System.out.println(najstarszy); // wszystkie wyrazy
 		System.out.println(najstarszy.get(najstarszy.size() - 1));
