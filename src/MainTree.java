@@ -1,5 +1,3 @@
-package src;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -55,7 +53,7 @@ public class MainTree {
 	private void znajdzNajstarszy() {
 		Set<String> slowa = new TreeSet<String>();
 		budujWyrazy(korzen, slowa, new StringBuilder());
-//        System.out.println(slowa);
+        System.out.println(slowa);
 		System.out.println(slowa.toArray()[slowa.size() - 1]);
 	}
 
