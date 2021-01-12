@@ -36,7 +36,7 @@ public class MainTree {
 	}
 
 	private void skanujPlik() {
-		try (Scanner scan = new Scanner(new File("drzewo.txt"))) {
+		try (Scanner scan = new Scanner(new File(Const.PATH))) {
 			while (scan.hasNextLine()) {
 				String line = scan.nextLine().toLowerCase();
 				Character wartosc = line.charAt(line.length() - 1);
@@ -63,7 +63,7 @@ public class MainTree {
 		main.skanujPlik();
 		main.znajdzNajstarszy();
 		long executionTime = System.currentTimeMillis() - millisActualTime; // czas wykonania programu w milisekundach.
-		System.out.println("Tree: "+executionTime + " ms");
+		System.out.println("Tree: " + ((executionTime < 1000) ? Const.BLUE : Const.RED) + executionTime + Const.RESET + " ms");
 	}
 
 }

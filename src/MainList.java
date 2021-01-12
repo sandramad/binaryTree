@@ -31,7 +31,7 @@ public class MainList {
 	}
 
 	private void skanujPlik() {
-		try (Scanner scan = new Scanner(new File("drzewo.txt"))) {
+		try (Scanner scan = new Scanner(new File(Const.PATH))) {
 			while (scan.hasNextLine()) {
 				String wiersz = scan.nextLine().toLowerCase();
 				String wartosc = wiersz.substring(wiersz.length() - 1);
@@ -69,7 +69,7 @@ public class MainList {
 //		System.out.println(najstarszy); // wszystkie wyrazy
 		System.out.println(najstarszy.get(najstarszy.size() - 1));
 		long executionTime = System.currentTimeMillis() - millisActualTime; // czas wykonania programu w milisekundach.
-		System.out.println(executionTime + " ms");
+		System.out.println("List: " + ((executionTime < 1000) ? Const.BLUE : Const.RED) + executionTime + Const.RESET + " ms");
 	}
 
 }
