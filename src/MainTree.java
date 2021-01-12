@@ -22,17 +22,17 @@ public class MainTree {
 		}
 	}
 
-	private void budujWyrazy(Wezel wezel, Set<String> words, StringBuilder word) {
-		word.append(wezel.wartosc);
+	private void budujWyrazy(Wezel wezel, Set<String> slowa, StringBuilder slowo) {
+		slowo.append(wezel.wartosc);
 		if (wezel.lewa == null && wezel.prawa == null) {
-			words.add(new StringBuilder(word).reverse().toString());
+			slowa.add(new StringBuilder(slowo).reverse().toString());
 		} else {
 			if (wezel.lewa != null)
-				budujWyrazy(wezel.lewa, words, word);
+				budujWyrazy(wezel.lewa, slowa, slowo);
 			if (wezel.prawa != null)
-				budujWyrazy(wezel.prawa, words, word);
+				budujWyrazy(wezel.prawa, slowa, slowo);
 		}
-		word.deleteCharAt(word.length() - 1);
+		slowo.deleteCharAt(slowo.length() - 1);
 	}
 
 	private void skanujPlik() {
@@ -51,10 +51,10 @@ public class MainTree {
 	}
 
 	private void znajdzNajstarszy() {
-		Set<String> words = new TreeSet<String>();
-		budujWyrazy(korzen, words, new StringBuilder());
-//        System.out.println(words);
-		System.out.println(words.toArray()[words.size() - 1]);
+		Set<String> slowa = new TreeSet<String>();
+		budujWyrazy(korzen, slowa, new StringBuilder());
+//        System.out.println(slowa);
+		System.out.println(slowa.toArray()[slowa.size() - 1]);
 	}
 
 	public static void main(String[] args) {
