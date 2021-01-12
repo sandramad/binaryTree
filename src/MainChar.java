@@ -1,3 +1,5 @@
+package src;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -42,7 +44,7 @@ public class MainChar {
 			if (cTmp < wezel.wartosc) {
 				cTmp = wezel.wartosc;
 				najstarszy = new StringBuilder(slowo).reverse().toString();
-//				System.out.println(najstarszy);
+//				System.out.print(najstarszy+", ");
 			} else if (cTmp == wezel.wartosc) {
 				String tmp = new StringBuilder(slowo).reverse().toString();
 				najstarszy = (najstarszy.compareTo(tmp) > 0) ? najstarszy : tmp;
@@ -64,7 +66,7 @@ public class MainChar {
 		main.skanujPlik("drzewo.txt");
 		System.out.println(main.znajdzNajstarszy(main.korzen, "", new StringBuilder()));
 		long executionTime = System.currentTimeMillis() - millisActualTime; // czas wykonania programu w milisekundach.
-	System.out.println(executionTime + " ms");
+	System.out.println("Char: "+executionTime + " ms");
 	}
 
 }

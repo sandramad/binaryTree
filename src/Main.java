@@ -1,3 +1,5 @@
+package src;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -39,7 +41,7 @@ public class Main {
 		slowo.append(wezel.wartosc);
 		if (wezel.lewa == null && wezel.prawa == null) {
 			String tmp = new StringBuilder(slowo).reverse().toString();
-//        	System.out.println(tmp); // wszystkie słowa
+//        	System.out.print(tmp+", "); // wszystkie słowa
 			najstarszy = (najstarszy.compareTo(tmp) > 0) ? najstarszy : tmp;
 		} else {
 			if (wezel.lewa != null)
@@ -54,10 +56,10 @@ public class Main {
 	public static void main(String[] args) {
 		long millisActualTime = System.currentTimeMillis(); // początkowy czas w milisekundach.
 		Main main = new Main();
-		main.skanujPlik("tree.txt");
+		main.skanujPlik("drzewo.txt");
 		System.out.println(main.znajdzNajstarszy(main.korzen, "", new StringBuilder()));
 		long executionTime = System.currentTimeMillis() - millisActualTime; // czas wykonania programu w milisekundach.
-		System.out.println(executionTime + " ms");
+		System.out.println("Main: "+executionTime + " ms");
 	}
 
 }
