@@ -59,9 +59,12 @@ public class MainChar {
 	}
 
 	public static void main(String[] args) {
+		long millisActualTime = System.currentTimeMillis(); // początkowy czas w milisekundach.
 		MainChar main = new MainChar();
-		main.skanujPlik("tree.txt");
+		main.skanujPlik("drzewo.txt");
 		System.out.println(main.znajdzNajstarszy(main.korzen, "", new StringBuilder()));
+		long executionTime = System.currentTimeMillis() - millisActualTime; // czas wykonania programu w milisekundach.
+	System.out.println(executionTime + " ms");
 	}
 
 }

@@ -61,13 +61,16 @@ public class MainList {
 	}
 
 	public static void main(String[] args) {
+		long millisActualTime = System.currentTimeMillis(); // początkowy czas w milisekundach.
 		MainList main = new MainList();
-		main.skanujPlik("tree.txt");
+		main.skanujPlik("drzewo.txt");
 		ArrayList<String> najstarszy = new ArrayList<String>();
 		najstarszy.addAll(main.budujWyrazy(main.korzen));
 		Collections.sort(najstarszy);
 //		System.out.println(najstarszy); // wszystkie wyrazy
 		System.out.println(najstarszy.get(najstarszy.size() - 1));
+		long executionTime = System.currentTimeMillis() - millisActualTime; // czas wykonania programu w milisekundach.
+		System.out.println(executionTime + " ms");
 	}
 
 }

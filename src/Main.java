@@ -52,9 +52,12 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
+		long millisActualTime = System.currentTimeMillis(); // początkowy czas w milisekundach.
 		Main main = new Main();
 		main.skanujPlik("tree.txt");
 		System.out.println(main.znajdzNajstarszy(main.korzen, "", new StringBuilder()));
+		long executionTime = System.currentTimeMillis() - millisActualTime; // czas wykonania programu w milisekundach.
+		System.out.println(executionTime + " ms");
 	}
 
 }
