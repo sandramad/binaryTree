@@ -42,7 +42,7 @@ public class MainChar {
 			if (cTmp < wezel.wartosc) {
 				cTmp = wezel.wartosc;
 				najstarszy = new StringBuilder(slowo).reverse().toString();
-//				System.out.println(najstarszy);
+				System.out.println(najstarszy);
 			} else if (cTmp == wezel.wartosc) {
 				String tmp = new StringBuilder(slowo).reverse().toString();
 				najstarszy = (najstarszy.compareTo(tmp) > 0) ? najstarszy : tmp;
@@ -60,7 +60,7 @@ public class MainChar {
 
 	public static void main(String[] args) {
 		MainChar main = new MainChar();
-		main.skanujPlik("drzewo.txt");
+		main.skanujPlik("tree.txt");
 		System.out.println(main.znajdzNajstarszy(main.korzen, "", new StringBuilder()));
 	}
 
